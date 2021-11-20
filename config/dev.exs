@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :elixir_nlw_heat, ElixirNlwHeat.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "docker",
   database: "elixir_nlw_heat_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
