@@ -18,6 +18,9 @@ defmodule ElixirNlwHeatWeb.MessagesController do
 
 
   defp handle_create({:error, %{result: result, status: status}}, conn) do
-
+    conn
+    |> put_status(status)
+    |> put_view(ElixirNlwHeatWeb.ErrorView)
+    |> render("error.json", result: result)
   end
 end
