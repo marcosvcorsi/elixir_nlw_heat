@@ -1,10 +1,23 @@
 defmodule ElixirNlwHeatWeb.MessagesController do
   use ElixirNlwHeatWeb, :controller 
 
-  def create(conn, params) do
-    IO.inspect(params)
+  alias ElixirNlwHeat.Message
+  alias ElixirNlwHeat.Messages.Create
 
-    conn 
-    |> text("RECEBI a REQUISICAO")
+  def create(conn, params) do
+    params
+    |> Create.call()
+    |> handle_create(conn)
+  end
+
+  defp handle_create({:ok, %Message{} = message}, conn) do
+    conn
+    |> put_status(:created)
+    |> render("create.json", message: message)
+  end
+
+
+  defp handle_create({:error, %{result: result, status: status}}, conn) do
+
   end
 end
