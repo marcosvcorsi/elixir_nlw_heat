@@ -4,7 +4,7 @@ defmodule ElixirNlwHeat.Tags.Count do
   def call do
     Get.today_messages()
     |> Task.async_stream(fn message -> count_words(message.text) end)
-    |> Enum.reduce(%{}, fn elem, acc -> sum_values(elem, acc) end);
+    |> Enum.reduce(%{}, fn elem, acc -> sum_values(elem, acc) end)
   end
 
   defp count_words(text) do
